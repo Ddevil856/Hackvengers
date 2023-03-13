@@ -13,12 +13,8 @@ contract Contract {
         string Date_of_Crime;
         string Place_of_Crime;
         string Description_of_Crime;
+        string[] evidences;
         string[] updates;
-    }
-
-    struct Suspect {
-        string Name_of_Suspect;
-        uint256 age_of_Suspect;
     }
 
     FIR[] private Fir_List;
@@ -37,7 +33,9 @@ contract Contract {
         string memory birth_date,
         string memory date_of_crime,
         string memory place_of_crime,
-        string memory description
+        string memory description,
+        string[] memory evidences
+
     ) public returns (uint256) {
         FIR_NUMBER++;
         Fir_List.push(
@@ -52,29 +50,20 @@ contract Contract {
                 date_of_crime,
                 place_of_crime,
                 description,
+                evidences,
                 new string[](0)
             )
         );
+
         return FIR_NUMBER;
     }
 
-    function retrieveFIR(
-        uint256 fir_number
-    ) public view returns (FIR memory a) {
-        require(
-            fir_number > 0 && fir_number <= Fir_List.length,
-            "Invalid FIR Number"
-        );
-        return Fir_List[fir_number - 1];
-    }
-
-    function allPoliceStationFIR(
-        string memory police_station
-    ) public view returns (FIR[] memory) {
-        require(
-            bytes(police_station).length > 0,
-            "Please enter a Police Station Name"
-        );
+    function allPoliceStationFIR(string memory police_station)
+        public
+        view
+        returns (FIR[] memory)
+    {
+        require(bytes(police_station).length > 0, "Please enter a Police Station Name");
 
         uint256 count = 0;
         for (uint256 i = 0; i < Fir_List.length; i++) {
@@ -88,6 +77,7 @@ contract Contract {
 
         FIR[] memory result = new FIR[](count);
         uint256 j = 0;
+
         for (uint256 i = 0; i < Fir_List.length; i++) {
             if (
                 keccak256(bytes(Fir_List[i].Police_Station)) ==
