@@ -1,7 +1,7 @@
 import React from "react";
 
 function Login(){
-    return <section class="bg-gray-50 dark:bg-gray-900">
+    return (<section class="bg-gray-50 dark:bg-gray-900">
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
             <img class="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo"/>
@@ -34,13 +34,13 @@ function Login(){
                     </div>
                     <button type="submit" class="w-full text-white bg-sky-600 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800">Sign in</button>
                     <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                        Don’t have an account yet? <a href="/frontend/Signup.html" class="font-medium text-sky-600 hover:underline dark:text-sky-500">Sign up</a>
+                        Don’t have an account yet? <a href="/signup" class="font-medium text-sky-600 hover:underline dark:text-sky-500">Sign up</a>
                     </p>
                 </form>
             </div>
         </div>
     </div>
-  </section>
+  </section>)
 }
 
 export default Login;
