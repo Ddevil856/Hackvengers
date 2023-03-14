@@ -17,6 +17,15 @@ with open('config.json', 'r') as c:
     params = json.load(c)["params"]
 
 
+app.config.update(
+    MAIL_SERVER='smtp.gmail.com',
+    MAIL_PORT='465',
+    MAIL_USE_SSL=True,
+    MAIL_USE_TLS=False,
+    MAIL_USERNAME=params['gmail-user'],
+    MAIL_PASSWORD=params['gmail-password'])
+
+mail=Mail(app)
 
 sdk = ThirdwebSDK.from_private_key(str(params['Private_Key']), "mumbai")
 
@@ -99,19 +108,19 @@ def register():
 def createfir():   
     if request.method == 'POST':
         if current_user.is_authenticated :
-            police_station = request.form['police-station-name']
-            police_station_code = int(request.form['police-station-code'])
+            policeStation = request.form['police-station-name']
+            policeStationCode = int(request.form['police-station-code'])
             district = request.form['district']
-            date_of_crime = request.form['date-of-crime']
-            place_of_crime = request.form['place-of-crime']
+            dateOfCrime = request.form['date-of-crime']
+            placeOfCrime = request.form['place-of-crime']
             description= request.form['description']
             file= request.files['file']            
             file.save(os.path.join("temp", file.filename))
 
             current_date = datetime.now()
             name = current_user.name
-            birth_date = current_user.dob
-            user_id = current_user.id
+            birthDate = current_user.dob
+            userId = current_user.id
             dol = current_date.strftime("%d/%m/%Y")
             
            
@@ -121,12 +130,11 @@ def createfir():
             data = {'filePath': files}
             response = requests.post(url, json=data)
             cid = response.text
-            evidenceid = cid
+            evidenceID = cid
             print(cid)
-            data = contract.call("raiseFIR", dol, name, district, police_station, police_station_code, evidenceid, birth_date, date_of_crime, place_of_crime, description)
+            data = contract.call("raiseFIR", userId, name, district, policeStation, policeStationCode, birthDate, dateOfCrime, placeOfCrime, description, evidenceID)
             delete_file = os.path.join(r"D:\Hackathon\Hackvengers\Test\temp", file.filename)
 
-            print(police_station,police_station_code,district,date_of_crime,place_of_crime,description)
             
             return redirect("/")
         else:
@@ -152,8 +160,11 @@ def contact():
 @app.route('/allfir')
 def allfir():
     if current_user.is_authenticated:
+        userId = current_user.id
+        data = contract.call("retrieveByUserId", userId)
+        print(data)
 
-        return render_template('allfir.html')
+        return render_template('fircopy.html',data=data)
     else:
         return redirect("/")
 
