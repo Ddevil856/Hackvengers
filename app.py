@@ -10,13 +10,23 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 import requests
 import json
-
+from flask_mail import Mail
 from thirdweb import ThirdwebSDK
 
 with open('config.json', 'r') as c:
     params = json.load(c)["params"]
 
 
+
+
+sdk = ThirdwebSDK.from_private_key(str(params['Private_Key']), "mumbai")
+
+contract = sdk.get_contract(str(params['Contract_Address']))
+
+app=Flask(__name__)
+db = SQLAlchemy()
+
+    
 app.config.update(
     MAIL_SERVER='smtp.gmail.com',
     MAIL_PORT='465',
@@ -27,14 +37,7 @@ app.config.update(
 
 mail=Mail(app)
 
-sdk = ThirdwebSDK.from_private_key(str(params['Private_Key']), "mumbai")
 
-contract = sdk.get_contract(str(params['Contract_Address']))
-
-app=Flask(__name__)
-db = SQLAlchemy()
-
-    
 class Users(db.Model,UserMixin):
           id= db.Column(db.Integer, primary_key=True,autoincrement=True)
           email=db.Column(db.String(150), unique=True)
@@ -131,12 +134,13 @@ def createfir():
             response = requests.post(url, json=data)
             cid = response.text
             evidenceID = cid
-            print(cid)
             data = contract.call("raiseFIR", userId, name, district, policeStation, policeStationCode, birthDate, dateOfCrime, placeOfCrime, description, evidenceID)
             delete_file = os.path.join(r"D:\Hackathon\Hackvengers\Test\temp", file.filename)
+            link= "https://dweb.link/ipfs/"+cid
 
+            mail.send_message('A Fir has been launched Launched',sender=params['gmail-user'],recipients=[current_user.email], body= 'Police Station: '+policeStation+' \n District: '+district+'\n Date Of Crime: '+ dateOfCrime+' \n Place Of Crime: '+placeOfCrime+' \n Description: '+description+' \n Link of Evidance: '+link)
             
-            return redirect("/")
+            return redirect("/allfir")
         else:
             return redirect("/login")
     elif current_user.is_authenticated :
@@ -162,7 +166,6 @@ def allfir():
     if current_user.is_authenticated:
         userId = current_user.id
         data = contract.call("retrieveByUserId", userId)
-        print(data)
 
         return render_template('fircopy.html',data=data)
     else:
