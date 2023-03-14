@@ -72,20 +72,13 @@ contract Contract {
         return Fir_List[fir_number - 1];
     }
 
-    function allPoliceStationFIR(
-        string memory police_station
-    ) public view returns (FIR[] memory) {
-        require(
-            bytes(police_station).length > 0,
-            "Please enter a Police Station Name"
-        );
+    function allPoliceStationFIR(int police_station_code) public view returns (FIR[] memory) 
+    {
+        require(police_station_code != 0, "Please enter a Police Station Code");
 
         uint256 count = 0;
         for (uint256 i = 0; i < Fir_List.length; i++) {
-            if (
-                keccak256(bytes(Fir_List[i].Police_Station)) ==
-                keccak256(bytes(police_station))
-            ) {
+            if (Fir_List[i].Police_Station_Code == police_station_code) {
                 count++;
             }
         }
@@ -93,10 +86,7 @@ contract Contract {
         FIR[] memory result = new FIR[](count);
         uint256 j = 0;
         for (uint256 i = 0; i < Fir_List.length; i++) {
-            if (
-                keccak256(bytes(Fir_List[i].Police_Station)) ==
-                keccak256(bytes(police_station))
-            ) {
+            if (Fir_List[i].Police_Station_Code == police_station_code) {
                 result[j] = Fir_List[i];
                 j++;
             }
@@ -104,4 +94,32 @@ contract Contract {
 
         return result;
     }
+
+    function retrievebyuserid(uint256 user_id) public view returns (FIR[] memory) 
+    {
+    uint256 count = 0;
+    
+    for (uint256 i = 0; i < Fir_List.length; i++) 
+    {
+        if (Fir_List[i].User_ID == user_id) 
+        {
+            count++;
+        }
+    }
+
+    FIR[] memory result = new FIR[](count);
+    uint256 j = 0;
+
+    for (uint256 i = 0; i < Fir_List.length; i++) 
+    {
+        if (Fir_List[i].User_ID == user_id) 
+        {
+            result[j] = Fir_List[i];
+            j++;
+        }
+    }
+
+    return result;
+    }
+
 }
