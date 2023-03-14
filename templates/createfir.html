@@ -10,53 +10,54 @@
 <body>
 <!-- Navigation starts -->
 <nav class="w-full mx-auto bg-gray-50 dark:bg-gray-900 shadow relative z-20">
-    <div class="justify-between container px-6 h-16 flex items-center lg:items-stretch mx-auto">
-        <div class="flex items-center">
-            <div aria-label="Home" role="img" class="mr-10 flex items-center">
-                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_dark_page_title_and_white_box-svg6.svg" alt="logo">
-                <h3 class="text-base text-white font-bold tracking-normal leading-tight ml-3 hidden lg:block">Webitech</h3>
-            </div>
-            <ul class="pr-32 xl:flex hidden items-center h-full">
-                <li class="hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-white tracking-normal"><a href="javascript:void(0)"> Home</a></li>
-                <li class="hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-white mx-10 tracking-normal relative" ><a href="javascript:void(0)" class="flex items-center">Contact us</a></li>
-                <li class="hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm text-white mr-10 tracking-normal"><a href="javascript:void(0)"> About us</a></li>
-                
-            </ul>
-        </div>
-        <div class="h-full xl:flex hidden items-center justify-end">
-            <div class="h-full flex items-center">
-                <div class="w-32 pr-16 h-full flex items-center justify-end border-r"></div>
-                <div class="w-full h-full flex">
-                    <div class="w-16 xl:w-32 h-full flex items-center justify-center xl:border-r">
-                        <div class="relative">
-                            <a aria-label="show notifications" role="link" href="javascript:void(0)" class="cursor-pointer w-6 h-6 xl:w-auto xl:h-auto text-gray-600">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bell" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z"></path>
-                                    <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6"></path>
-                                    <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path>
-                                </svg>
-                            </a>
-                            <div class="animate-ping w-2 h-2 rounded-full bg-red-400 border border-white absolute inset-0 mt-1 mr-1 m-auto"></div>
-                        </div>
-                    </div>
-                    <div aria-haspopup="true" class="cursor-pointer w-full flex items-center justify-end relative">
-                        <button aria-haspopup="true" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 rounded flex items-center">
-                            <a href="/login" class="inline-block text-sm px-4 py-2 leading-none border rounded text-BLACK dark:text-white hover:border-transparent hover:text-white hover:bg-gray-700 mt-4 lg:mt-0">Sign In</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="visible xl:hidden flex items-center">
-            <div>
-                <button id="menu" class="text-gray-800 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800" onclick="sidebarHandler(true) ">
-                   <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_dark_page_title_and_white_box-svg7.svg" alt="toggler">
-                </button>
-            </div>
-        </div>
-    </div>
+  <div class="justify-between container px-6 h-16 flex items-center lg:items-stretch mx-auto">
+      <div class="flex items-center">
+          <div aria-label="Home" role="img" class="mr-10 flex items-center">
+              <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_dark_page_title_and_white_box-svg6.svg" alt="logo">
+              <h3 class="text-base text-black dark:text-white font-bold tracking-normal leading-tight ml-3 hidden lg:block">Webitech</h3>
+          </div>
+          <ul class="pr-32 xl:flex hidden items-center h-full">
+              <li class="text-indigo-500 hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm dark:text-white tracking-normal"><a href="javascript:void(0)"> Home</a></li>
+              <li class="text-indigo-500 hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm dark:text-white mx-10 tracking-normal relative" ><a href="javascript:void(0)" class="flex items-center">Contact us</a></li>
+              <li class="text-indigo-500 hover:text-indigo-700 cursor-pointer h-full flex items-center text-sm dark:text-white mr-10 tracking-normal"><a href="javascript:void(0)"> About us</a></li>
+              
+          </ul>
+      </div>
+      <div class="h-full xl:flex hidden items-center justify-end">
+          <div class="h-full flex items-center">
+              <div class="w-32 pr-16 h-full flex items-center justify-end border-r"></div>
+              <div class="w-full h-full flex">
+                  <div class="w-16 xl:w-32 h-full flex items-center justify-center xl:border-r">
+                      <div class="relative">
+                          <a aria-label="show notifications" role="link" href="javascript:void(0)" class="cursor-pointer w-6 h-6 xl:w-auto xl:h-auto text-gray-600">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bell" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <path stroke="none" d="M0 0h24v24H0z"></path>
+                                  <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6"></path>
+                                  <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path>
+                              </svg>
+                          </a>
+                          <div class="animate-ping w-2 h-2 rounded-full bg-red-400 border border-white absolute inset-0 mt-1 mr-1 m-auto"></div>
+                      </div>
+                  </div>
+                  <div aria-haspopup="true" class="cursor-pointer w-full flex items-center justify-end relative">
+                      <button aria-haspopup="true" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 rounded flex items-center">
+                          <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-BLACK hover:border-transparent hover:text-white hover:bg-gray-700 mt-4 lg:mt-0">Sign In</a>
+                      </button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="visible xl:hidden flex items-center">
+          <div>
+              <button id="menu" class="text-gray-800 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800" onclick="sidebarHandler(true) ">
+                 <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_dark_page_title_and_white_box-svg7.svg" alt="toggler">
+              </button>
+          </div>
+      </div>
+  </div>
 </nav>
 <!-- Navigation ends -->
+
 <form id="myForm" action="/createfir" method="POST" enctype="multipart/form-data">
     <div id="reset" class="px-2 py-12">
         <div class="flex flex-no-wrap items-start">
