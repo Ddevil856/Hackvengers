@@ -29,9 +29,9 @@ db = SQLAlchemy()
     
 app.config.update(
     MAIL_SERVER='smtp.gmail.com',
-    MAIL_PORT='465',
-    MAIL_USE_SSL=True,
-    MAIL_USE_TLS=False,
+    MAIL_PORT='587',
+    MAIL_USE_SSL=False,
+    MAIL_USE_TLS=True,
     MAIL_USERNAME=params['gmail-user'],
     MAIL_PASSWORD=params['gmail-password'])
 
@@ -70,7 +70,6 @@ def load_user(id):
 
 
 @app.route('/')
-
 def index():
         return render_template('index.html')
 
@@ -155,7 +154,7 @@ def logout():
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('aboutus.html')
 
 @app.route('/contact')
 def contact():
